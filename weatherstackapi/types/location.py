@@ -5,7 +5,8 @@ from pydantic import BaseModel, validator
 
 class Location(BaseModel):
     """
-    API response location section - https://weatherstack.com/documentation#query_parameter
+    API response location section
+    https://weatherstack.com/documentation#query_parameter
 
     - name: str - Name of location used.
     - country: str - Country name associated with the location used.
@@ -35,4 +36,4 @@ class Location(BaseModel):
 
     class Config:
         allow_arbitrary_types = True
-        json_encoders = {datetime: str, float: str}
+        json_encoders = {datetime: str}

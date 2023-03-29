@@ -3,7 +3,8 @@ from pydantic import BaseModel
 
 class Hourly(BaseModel):
     """
-    API historical/forecast response hourly section - https://weatherstack.com/documentation#historical_weather
+    API historical/forecast response hourly section
+    https://weatherstack.com/documentation#historical_weather
 
     - time: int - Time as a number in 24h format. EX: 3:00pm -> 1500
     - temperature: int - Temperature in selected units.
@@ -65,6 +66,3 @@ class Hourly(BaseModel):
     chanceofsnow: int
     chanceofthunder: int
     uv_index: int
-
-    class Config:
-        json_encoders = {float: str}

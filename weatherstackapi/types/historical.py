@@ -9,7 +9,8 @@ from .hourly import Hourly
 
 class historical_forecast(BaseModel):
     """
-    API historical/forecast response - https://weatherstack.com/documentation#historical_weather
+    API historical/forecast response
+    https://weatherstack.com/documentation#historical_weather
 
     - date: datetime.date - Requested date.
     - date_epoch: int - Requested date as UNIX timestamp.
@@ -41,7 +42,7 @@ class historical_forecast(BaseModel):
 
     class Config:
         allow_arbitrary_types = True
-        json_encoders = {date: str, float: str}
+        json_encoders = {date: str}
 
 
 class Historical(BaseModel):

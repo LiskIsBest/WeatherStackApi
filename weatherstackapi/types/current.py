@@ -5,7 +5,8 @@ from pydantic import BaseModel, validator
 
 class Current(BaseModel):
     """
-    API response current section - https://weatherstack.com/documentation#query_parameter
+    API response current section
+    https://weatherstack.com/documentation#query_parameter
 
     - observation_time: datetime.time - UTC time of when data was collected.
     - temperature: int - Temperature in selected units.

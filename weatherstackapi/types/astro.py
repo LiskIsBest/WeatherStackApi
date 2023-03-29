@@ -5,7 +5,8 @@ from pydantic import BaseModel, validator
 
 class Astro(BaseModel):
     """
-    API historical response astro section - https://weatherstack.com/documentation#historical_weather
+    API historical response astro section
+    https://weatherstack.com/documentation#historical_weather
 
     time format: hh:mm:ss 24 hour clock
 
