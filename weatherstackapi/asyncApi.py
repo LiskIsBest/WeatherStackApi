@@ -34,12 +34,15 @@ class AsyncWeatherApi(BaseWeatherStackApi):
     ) -> Response:
         """
         Returns current weather pydantic object
+        https://weatherstack.com/documentation#current_weather
 
         Available on: All plans
 
         - location: str - A single location or multiple semicolon seperated location indentifiers.
-        - units: str | None - One of the unit identifiers. (default: Metric)
-        - language: str | None - Specify a preferred language using its ISO-code. (default: English)
+        - units: str | None - One of the unit identifiers. 
+          - (default: Metric)
+        - language: str | None - Specify a preferred language using its ISO-code. 
+          - (default: English)
         ---
         - Location identifiers options:
           - Name: location = "New York"
@@ -49,9 +52,9 @@ class AsyncWeatherApi(BaseWeatherStackApi):
           - IP address(Auto-Fetch): location = "fetch:ip"
         ---
         - Units options:
-          - weatherstackwrapper.types.Units.METRIC = "m"
-          - weatherstackwrapper.types.Units.FAHRENHEIT = "f"
-          - weatherstackwrapper.types.Units.SCIENTIFIC = "s"
+          - weatherstackapi.types.Units.METRIC = "m"
+          - weatherstackapi.types.Units.FAHRENHEIT = "f"
+          - weatherstackapi.types.Units.SCIENTIFIC = "s"
         ---
         - Language options:
           - See https://weatherstack.com/documentation#language_parameter
@@ -68,6 +71,44 @@ class AsyncWeatherApi(BaseWeatherStackApi):
         units: str | Units = None,
         language: str | Language = None,
     ) -> Response:
+        """
+        Returns historical weather pydantic object
+        https://weatherstack.com/documentation#historical_weather
+
+        Available on: Standard Plan and higher
+
+        - location: str - A single location or multiple semicolon seperated location indentifiers.
+        - historical_date: str - A single historical date of multiple semicolo separated date.
+          - (example: 2015-01-21 or 2015-01-21:2015-01-22)
+        - hourly: bool - True or False depending on whether of not you want the data to be split hourly.
+        - interval: int - Defines the hourly intervals.
+          - Only available is hourly is set to True. 
+          - Default: 3 hour intervals.
+        - units: str | None - One of the unit identifiers. (default: Metric)
+        - language: str | None - Specify a preferred language using its ISO-code. (default: English)
+        ---
+        - Location identifiers options:
+          - Name: location = "New York"
+          - US/Canada/UK zip code: location = "99501"
+          - Coordinates(Lat/Lon): location = "40.7831,-73.9712"
+          - IP address: location = "153.65.8.20"
+          - IP address(Auto-Fetch): location = "fetch:ip"
+        ---
+        - Interval options:
+          - 1
+          - 3
+          - 6
+          - 12 
+          - 24
+        ---
+        - Units options:
+          - weatherstackapi.types.Units.METRIC = "m"
+          - weatherstackapi.types.Units.FAHRENHEIT = "f"
+          - weatherstackapi.types.Units.SCIENTIFIC = "s"
+        ---
+        - Language options:
+          - See https://weatherstack.com/documentation#language_parameter
+        """
         return super().historical(
             location=location,
             historical_date=historical_date,

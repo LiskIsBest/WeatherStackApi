@@ -53,9 +53,9 @@ class WeatherApi(BaseWeatherStackApi):
           - IP address(Auto-Fetch): location = "fetch:ip"
         ---
         - Units options:
-          - weatherstackwrapper.types.Units.METRIC = "m"
-          - weatherstackwrapper.types.Units.FAHRENHEIT = "f"
-          - weatherstackwrapper.types.Units.SCIENTIFIC = "s"
+          - weatherstackapi.types.Units.METRIC = "m"
+          - weatherstackapi.types.Units.FAHRENHEIT = "f"
+          - weatherstackapi.types.Units.SCIENTIFIC = "s"
         ---
         - Language options:
           - See https://weatherstack.com/documentation#language_parameter
@@ -103,9 +103,9 @@ class WeatherApi(BaseWeatherStackApi):
           - 24
         ---
         - Units options:
-          - weatherstackwrapper.types.Units.METRIC = "m"
-          - weatherstackwrapper.types.Units.FAHRENHEIT = "f"
-          - weatherstackwrapper.types.Units.SCIENTIFIC = "s"
+          - weatherstackapi.types.Units.METRIC = "m"
+          - weatherstackapi.types.Units.FAHRENHEIT = "f"
+          - weatherstackapi.types.Units.SCIENTIFIC = "s"
         ---
         - Language options:
           - See https://weatherstack.com/documentation#language_parameter
