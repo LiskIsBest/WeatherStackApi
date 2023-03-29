@@ -34,15 +34,15 @@ class WeatherApi(BaseWeatherStackApi):
         self, location: str, units: str | Units = None, language: str | Language = None
     ) -> Response:
         """
-        Returns current weather pydantic object
+        Returns Response pydantic object with current field filled.
         https://weatherstack.com/documentation#current_weather
 
         Available on: All plans
 
         - location: str - A single location or multiple semicolon seperated location indentifiers.
-        - units: str | None - One of the unit identifiers. 
+        - units: str | None - One of the unit identifiers.
           - (default: Metric)
-        - language: str | None - Specify a preferred language using its ISO-code. 
+        - language: str | None - Specify a preferred language using its ISO-code.
           - (default: English)
         ---
         - Location identifiers options:
@@ -73,7 +73,7 @@ class WeatherApi(BaseWeatherStackApi):
         language: str | Language = None,
     ) -> Response:
         """
-        Returns historical weather pydantic object
+        Returns Response pydantic object with historical field filled.
         https://weatherstack.com/documentation#historical_weather
 
         Available on: Standard Plan and higher
@@ -83,7 +83,7 @@ class WeatherApi(BaseWeatherStackApi):
           - (example: 2015-01-21 or 2015-01-21:2015-01-22)
         - hourly: bool - True or False depending on whether of not you want the data to be split hourly.
         - interval: int - Defines the hourly intervals.
-          - Only available is hourly is set to True. 
+          - Only available is hourly is set to True.
           - Default: 3 hour intervals.
         - units: str | None - One of the unit identifiers. (default: Metric)
         - language: str | None - Specify a preferred language using its ISO-code. (default: English)
@@ -99,7 +99,7 @@ class WeatherApi(BaseWeatherStackApi):
           - 1
           - 3
           - 6
-          - 12 
+          - 12
           - 24
         ---
         - Units options:
@@ -130,6 +130,46 @@ class WeatherApi(BaseWeatherStackApi):
         units: str | Units = None,
         language: str | Language = None,
     ) -> Response:
+        """
+        Returns Response pydantic object with historical field filled with the given date range.
+        https://weatherstack.com/documentation#historical_timeseries
+
+        Available on: Standard Plan and higher
+
+        - location: str - A single location or multiple semicolon seperated location indentifiers.
+        - historical_date_start: str - A start date for the current historical time-series request.
+          - (example: 2015-01-21)
+        - historical_date_end: str - An end date for the current historical time-series request.
+          - (example: 2015-01-27)
+        - hourly: bool - True or False depending on whether of not you want the data to be split hourly.
+        - interval: int - Defines the hourly intervals.
+          - Only available is hourly is set to True.
+          - Default: 3 hour intervals.
+        - units: str | None - One of the unit identifiers. (default: Metric)
+        - language: str | None - Specify a preferred language using its ISO-code. (default: English)
+        ---
+        - Location identifiers options:
+          - Name: location = "New York"
+          - US/Canada/UK zip code: location = "99501"
+          - Coordinates(Lat/Lon): location = "40.7831,-73.9712"
+          - IP address: location = "153.65.8.20"
+          - IP address(Auto-Fetch): location = "fetch:ip"
+        ---
+        - Interval options:
+          - 1
+          - 3
+          - 6
+          - 12
+          - 24
+        ---
+        - Units options:
+          - weatherstackapi.types.Units.METRIC = "m"
+          - weatherstackapi.types.Units.FAHRENHEIT = "f"
+          - weatherstackapi.types.Units.SCIENTIFIC = "s"
+        ---
+        - Language options:
+          - See https://weatherstack.com/documentation#language_parameter
+        """
         return super().historical_time_series(
             location=location,
             historical_date_start=historical_date_start,
@@ -150,6 +190,43 @@ class WeatherApi(BaseWeatherStackApi):
         units: str | Units = None,
         language: str | Language = None,
     ) -> Response:
+        """
+        Returns Response pydantic object with forecast field filled.
+        https://weatherstack.com/documentation#weather_forecast
+
+        Available on: Professional Plan and higher
+
+        - location: str - A single location or multiple semicolon seperated location indentifiers.
+        - forecast_days: int - Number of days for the api to return forecast data.
+        - hourly: bool - True or False depending on whether of not you want the data to be split hourly.
+        - interval: int - Defines the hourly intervals.
+          - Only available is hourly is set to True.
+          - Default: 3 hour intervals.
+        - units: str | None - One of the unit identifiers. (default: Metric)
+        - language: str | None - Specify a preferred language using its ISO-code. (default: English)
+        ---
+        - Location identifiers options:
+          - Name: location = "New York"
+          - US/Canada/UK zip code: location = "99501"
+          - Coordinates(Lat/Lon): location = "40.7831,-73.9712"
+          - IP address: location = "153.65.8.20"
+          - IP address(Auto-Fetch): location = "fetch:ip"
+        ---
+        - Interval options:
+          - 1
+          - 3
+          - 6
+          - 12
+          - 24
+        ---
+        - Units options:
+          - weatherstackapi.types.Units.METRIC = "m"
+          - weatherstackapi.types.Units.FAHRENHEIT = "f"
+          - weatherstackapi.types.Units.SCIENTIFIC = "s"
+        ---
+        - Language options:
+          - See https://weatherstack.com/documentation#language_parameter
+        """
         return super().forecast(
             location=location,
             forecast_days=forecast_days,
@@ -158,3 +235,15 @@ class WeatherApi(BaseWeatherStackApi):
             units=units,
             language=language,
         )
+
+    @request
+    def lookup_location(self, location: str) -> Response:
+        """
+        Returns Response pydantic object with results field filled.
+        https://weatherstack.com/documentation#location_lookup
+
+        Available on: Standard Plan and higher
+
+        - location: str - Location search/autocomplete query to the API.
+        """
+        return super().lookup_location(location)
