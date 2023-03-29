@@ -5,18 +5,18 @@ In development wrapper library for [WeatherStack](https://weatherstack.com/) wea
 Install
 ---
 ```bash
-pip install weatherstackwrapper
+pip install weatherstackapi
 ```
 ```bash
-poetry add weatherstackwrapper
+poetry add weatherstackapi
 ```
 
 Usage
 ---
 ```Python
-import weatherstackwrapper as wsw
+import weatherstackapi as wsa
 
-weatherApi = wsw.WeatherApi(access_key)
+weatherApi = wsa.WeatherApi(access_key)
 
 weatherApi.current(location, units, language)
 weatherApi.historical(location, historical_date, hourly, interval, units, language)
