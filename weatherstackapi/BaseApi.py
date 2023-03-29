@@ -230,3 +230,18 @@ class BaseWeatherStackApi:
             params["language"] = language
 
         return {"method": "GET", "url": self.base_url + "forecast", "params": params}
+
+    def lookup_location(self, location: str) -> Response:
+        params = {"access_key": self.__access_key}
+
+        if not isinstance(location, str):
+            raise c_TypeError(
+                param_name="location", correct="str", wrong=type(location).__name__
+            )
+        params["query"] = location
+
+        return {
+            "method": "GET",
+            "url": self.base_url + "autocomplete",
+            "params": params,
+        }
